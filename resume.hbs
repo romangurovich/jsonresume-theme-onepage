@@ -39,13 +39,17 @@
           {{#if city}}{{city}}{{/if}}{{#if region}}, {{region}}{{/if}}{{#if countryCode}}, {{countryCode}}{{/if}}
         </span>
       {{/location}}
+      {{#if website}}
+      <span class='divider'>|</span>
+      <span class='website'>{{website}}</span>
+      {{/if}}
     </div>
     {{#if profiles.length}}
       <div id='profilesBlock'>
         {{#each profiles}}
           {{#if url}}
             <span class='url'>
-              <a href='{{url}}'>{{network}}</a>
+              <a href='{{url}}'>{{url}}</a>
             </span>
             {{#unless @last}}<span class='divider'>|</span>{{/unless}}
           {{/if}}
@@ -82,11 +86,16 @@
 	        </span>
 	        {{#if startDate}}
 	        <span class='date'>
-	          {{#if startDate}}{{startDate}}{{/if}} &mdash; {{#if endDate}}{{endDate}}{{else}}Present{{/if}}
+	          {{#if startDate}}{{MY startDate}}{{/if}} &mdash; {{#if endDate}}{{MY endDate}}{{else}}Present{{/if}}
 	        </span>
 	        {{/if}}
 	      </div>
 	      <div><a href='{{website}}'>{{website}}</a></div>
+        {{#if summary}}
+        <span class='summary'>
+          {{summary}}
+        </span>
+        {{/if}}
 	      {{#if highlights.length}}
 	      <ul class='highlights'>
 	        {{#each highlights}}
@@ -122,7 +131,7 @@
         </span>
         {{#if releaseDate}}
         <span class='date'>
-          <span class='releaseDate'>{{releaseDate}}</span>
+          <span class='releaseDate'>{{MY releaseDate}}</span>
         </span>
         {{/if}}
       </div>
@@ -158,7 +167,7 @@
         </span>
         {{#if date}}
         <span class='date'>
-          <span class='date'>{{date}}</span>
+          <span class='date'>{{MY date}}</span>
         </span>
         {{/if}}
       </div>
@@ -187,11 +196,16 @@
         <span class='title'>{{#if organization}}{{organization}}{{/if}}{{#if position}} - {{position}}{{/if}}</span>
         {{#if startDate}}
         <span class='date'>
-          {{#if startDate}}{{startDate}}{{/if}} &mdash; {{#if endDate}}{{endDate}}{{else}}Present{{/if}}
+          {{#if startDate}}{{Y startDate}}{{/if}} &mdash; {{#if endDate}}{{Y endDate}}{{else}}Present{{/if}}
         </span>
         {{/if}}
         {{#if website}}
         <div class='website'><a href='{{website}}'>{{website}}</a></div>
+        {{/if}}
+        {{#if summary}}
+        <span class='summary'>
+          {{summary}}
+        </span>
         {{/if}}
         {{#if highlights.length}}
         <ul class='highlights'>
@@ -221,7 +235,7 @@
         </span>
         {{#if startDate}}
         <span class='date'>
-          {{#if startDate}}{{startDate}}{{/if}} &mdash; {{#if endDate}}{{endDate}}{{else}}Present{{/if}}
+          {{#if startDate}}{{Y startDate}}{{/if}} &mdash; {{#if endDate}}{{Y endDate}}{{else}}Present{{/if}}
         </span>
         {{/if}}
         <div class=''>

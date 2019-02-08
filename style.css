@@ -22,8 +22,8 @@ a {
 
 #resume {
   margin: 0 auto;
-  max-width: 600px;
-  padding: 80px 100px;
+  max-width: 844px;
+  padding: 80px;
   background: #fff;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 4px #aaa;
@@ -93,7 +93,7 @@ a {
   margin-right: 5px;
 }
 
-.summary {
+.summaryBlock {
   margin-top: 6px;
 }
 
@@ -140,12 +140,15 @@ a {
 @media print {
   body {
     background: #FFFFFF;
+    font: 10px "Times New Roman", Times, sans-serif;
+    line-height: 1.2;
+    margin: 20px;
   }
   #resume {
     margin: 0 auto;
-    max-width: 600px;
-    padding: 0px 0px;
-    border: 0px;
+    max-width: 844px;
+    padding: 20px 40px 0;
+    border: 0;
     background: #fff;
     box-shadow: none;
     -webkit-box-shadow: none;

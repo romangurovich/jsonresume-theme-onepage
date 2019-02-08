@@ -1,14 +1,13 @@
-var fs = require("fs");
-var Handlebars = require("handlebars");
+const fs = require('fs');
+const Handlebars = require('handlebars');
+const { dateHelpers } = require(__dirname + '/helpers/date_helpers.js');
+const { MY, Y, DMY } = dateHelpers;
+
+Handlebars.registerHelper('MY', MY);
+Handlebars.registerHelper('Y', Y);
+Handlebars.registerHelper('DMY', DMY);
 
 COURSES_COLUMNS = 3;
-
-PREPEND_SUMMARY_CATEGORIES = [
-  "work",
-  "volunteer",
-  "awards",
-  "publications"
-];
 
 function validateArray(arr) {
   return arr !== undefined && arr !== null && arr instanceof Array && arr.length > 0;
@@ -21,7 +20,7 @@ function render(resume) {
       if (validateArray(block.courses)) {
         splitCourses = [];
         columnIndex = 0;
-        for (var i = 0; i < COURSES_COLUMNS; i++) {
+        for (let i = 0; i < COURSES_COLUMNS; i++) {
           splitCourses.push([]);
         }
         block.courses.forEach(function(course) {
@@ -36,22 +35,8 @@ function render(resume) {
     });
   }
 
-  PREPEND_SUMMARY_CATEGORIES.forEach(function(category) {
-    if (resume[category] !== undefined) {
-      resume[category].forEach(function(block) {
-        if (block.highlights === undefined) {
-          block.highlights = [];
-        }
-        if (block.summary) {
-          block.highlights.unshift(block.summary);
-          delete block.summary;
-        }
-      });
-    }
-  });
-
-	var css = fs.readFileSync(__dirname + "/style.css", "utf-8");
-	var tpl = fs.readFileSync(__dirname + "/resume.hbs", "utf-8");
+	const css = fs.readFileSync(__dirname + '/style.css', 'utf-8');
+	const tpl = fs.readFileSync(__dirname + '/resume.hbs', 'utf-8');
 	return Handlebars.compile(tpl)({
 		css: css,
 		resume: resume
